@@ -1,3 +1,3 @@
-module example.com/hello
+module example/pointers
 
-go 1.20
+go 1.21.1
