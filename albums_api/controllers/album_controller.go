@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/orket-sam/go_lessons/config"
 	"github.com/orket-sam/go_lessons/models"
 )
 
@@ -12,7 +13,16 @@ var albums = []models.Album{
 }
 
 func GetAlbums(c *gin.Context) {
-	c.IndentedJSON(200, albums)
+	var albums = []models.Album{}
+	config.DB.Find(&albums)
+	if len(albums) == 0 {
+		c.IndentedJSON(200, gin.H{
+			"message": "No albums available",
+		})
+	} else {
+		c.IndentedJSON(200, albums)
+	}
+
 }
 
 func PostAlbum(c *gin.Context) {
