@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"example/hello/lessons"
 	"fmt"
 )
 
@@ -12,6 +13,11 @@ type user struct {
 	Email      string `json:"email"`
 }
 
+func init() {
+
+	lessons.DisplayUsers(lessons.Users)
+}
+
 func main() {
 
 	jsonString := `{"name":"Orket","age":24,"verified":false,"email":"samirorket@gmail.com"}`
@@ -20,5 +26,5 @@ func main() {
 	if err != nil {
 		println("oops")
 	}
-	fmt.Printf("%T", user)
+	fmt.Printf("%v", user)
 }
