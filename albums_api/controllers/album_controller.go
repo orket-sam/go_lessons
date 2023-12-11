@@ -6,11 +6,11 @@ import (
 	"github.com/orket-sam/go_lessons/models"
 )
 
-var albums = []models.Album{
-	{ID: "1", Title: "Blue Train", Artist: "John Coltrane", Price: 56.99},
-	{ID: "2", Title: "Jeru", Artist: "Gerry Mulligan", Price: 17.99},
-	{ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
-}
+// var albums = []models.Album{
+// 	{ID: "1", Title: "Blue Train", Artist: "John Coltrane", Price: 56.99},
+// 	{ID: "2", Title: "Jeru", Artist: "Gerry Mulligan", Price: 17.99},
+// 	{ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
+// }
 
 func GetAlbums(c *gin.Context) {
 	var albums = []models.Album{}
@@ -31,6 +31,17 @@ func PostAlbum(c *gin.Context) {
 	if err := c.BindJSON(&newAlbum); err != nil {
 		return
 	}
-	albums = append(albums, newAlbum)
+	config.DB.Create(&newAlbum)
 	c.String(200, newAlbum.Title+" Added!!")
+}
+
+func GetAlbumById(c *gin.Context) {
+	id := c.Param("id")
+	var album models.Album
+	config.DB.Find(&album, id)
+	if album.ID == "0" {
+		c.String(400, "album not found")
+	}
+
+	c.IndentedJSON(200, album)
 }

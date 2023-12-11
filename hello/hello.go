@@ -15,7 +15,7 @@ type user struct {
 
 func init() {
 
-	lessons.DisplayUsers(lessons.Users)
+	lessons.DisplayUsers("sam", "orket")
 }
 
 func main() {

@@ -8,4 +8,5 @@ import (
 func AlbumRoutes(r *gin.Engine) {
 	r.GET("/", controllers.GetAlbums)
 	r.POST("/addAlbum", controllers.PostAlbum)
+	r.GET("/album", controllers.GetAlbumById)
 }

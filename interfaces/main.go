@@ -49,4 +49,9 @@ func main() {
 	for _, shape := range shapes {
 		fmt.Printf("Shape is of type: %T,Area is: %v Perimeter is: %v \n", shape, shape.area(), shape.circumfrence())
 	}
+
+	var p *int
+	a := 56
+	p = &a
+	println(p, *p)
 }
