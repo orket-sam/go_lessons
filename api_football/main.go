@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"strconv"
-	"strings"
 
 	model "github.com/orket-sam/go_lessons/api_football/models"
 )
@@ -49,15 +47,11 @@ func main() {
 
 	standings := apidata.Response[0].League.Standings[0]
 	fmt.Println("Epl 2023 standings ")
+	fmt.Printf("%-10s %-20s %-10s %s \n", "Rank", "Team", "Points", "Played")
 
 	for i, standing := range standings {
-		space := len(strconv.Itoa(i + 1))
-		space2 := strings.Repeat(" ", 4-space)
-		line := strings.Repeat(" ", 25-len(standing.Team.Name))
-		if standing.Team.Name == "Manchester United" {
-			line = strings.Repeat("*", 25-len(standing.Team.Name))
-		}
-		fmt.Println(i+1, space2, standing.Team.Name, line, standing.Points)
+
+		fmt.Printf("%-10d %-20s %-10d %d \n", i+1, standing.Team.Name, standing.Points, standing.All.Played)
 	}
 
 }
