@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"slices"
 	"strconv"
 )
@@ -12,6 +13,7 @@ func main() {
 
 	twoSum(nums, target)
 	addNodeList([]int{2, 4, 3}, []int{5, 6, 4})
+	leastSquares(810)
 }
 
 func twoSum(nums []int, target int) {
@@ -46,4 +48,16 @@ func addNodeList(a, b []int) {
 
 	fmt.Println(aInt + bInt)
 
+}
+
+func leastSquares(area int) {
+	var squares []int
+	for area > 0 {
+		a := math.Sqrt(float64(area))
+		squares = append(squares, int(a))
+		area -= int(a * a)
+		println(int(a))
+	}
+
+	fmt.Println(squares)
 }

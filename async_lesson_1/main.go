@@ -1,24 +1,7 @@
 package main
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-type User struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
-}
-
 func main() {
 
-	var user User
-
-	stringUser := `{"name":"orket","age":23,"i":5616}`
-
-	if err := json.Unmarshal([]byte(stringUser), &user); err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(user.Name)
-
+	bill := NewBill("sam's basket", map[string]int{"sunrice": 1454, "brookside": 657, "ramtons fridge": 24800})
+	bill.printBill()
 }
