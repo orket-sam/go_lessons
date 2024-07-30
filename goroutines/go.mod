@@ -1,3 +1,3 @@
-module github.com/orket-sam/go_lessons/goroutines
+module example/go_routines
 
-go 1.21.1
+go 1.22.3
